@@ -7,7 +7,7 @@ import com.cc.spring.util.RestUtils;
 public class ExampleBackend {
 
 	public static Produkt berechneImBackend(User user) {
-		return RestUtils.generateSampleProduct(user);
+		return RestUtils.generateSampleProdukt(user);
 	}
 
 	
