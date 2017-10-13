@@ -1,0 +1,21 @@
+version: '3.3'
+
+services:
+
+ part4:
+  build: ./part4
+  ports:
+   - "8090:8090"
+  tty:
+    true
+  restart:
+    unless-stopped
+
+ part5:
+  build: ./part5
+  ports:
+   - "8095:8095"
+  tty:
+    true
+  restart:
+    unless-stopped
