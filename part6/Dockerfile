@@ -2,7 +2,7 @@ FROM openjdk:8-jdk-alpine
 
 VOLUME /tmp
 
-ADD target/springschulung_part5-0.0.1-SNAPSHOT.jar app.jar
+ADD target/springschulung_part6-0.0.1-SNAPSHOT.jar app.jar
 
 ENV JAVA_OPTS=""
 

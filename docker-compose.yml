@@ -11,8 +11,8 @@ services:
   restart:
     unless-stopped
 
- part5:
-  build: ./part5
+ part6:
+  build: ./part6
   ports:
    - "8095:8095"
   tty:
