@@ -6,6 +6,7 @@ public class User {
 
 	private Name name;
 	private Geschlecht geschlecht;
+
 	public Name getName() {
 		return name;
 	}

@@ -36,7 +36,7 @@ Testen Sie ihren REST-Endpunkt selbständig mit Postman - schicken Sie dabei ein
 
 ### 3.5 Datenmapping mit JSON sowie komplexen Request- und Responseobjekten - am Beispiel eines frei erfundenen Backends
 
-Nähern wir uns komplexeren Request- und Responseobjekten. Wir nehmen dazu ein an die BiPro-VorsorgeNet-Integration angelehntes Beispiel.
+Nähern wir uns komplexeren Request- und Responseobjekten.
 
 Stellen Sie einen Endpunkt `/produkt.json` bereit, der auf ein POST reagiert und ausschließlich JSON zurückliefert (Hinweis: `produces` im `@RequestMapping` verwenden). Er nimmt ein JSON entgegen, dass der Klasse `com.cc.spring.domain.User` entspricht:
 
