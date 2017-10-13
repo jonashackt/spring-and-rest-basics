@@ -9,6 +9,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 
 import static org.hamcrest.Matchers.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -29,7 +30,7 @@ public class UserControllerTests {
     @Before
     public void deleteAllBeforeTests() throws Exception {
 
-        // Lösche alle User
+        userRepository.deleteAll();
     }
 
     @Test
@@ -52,34 +53,51 @@ public class UserControllerTests {
     public void shouldQueryEntity() throws Exception {
 
         // Lege User an
+        MvcResult mvcResult = mockMvc.perform(post("/users").content(
+                "{\"firstName\": \"Frodo\", \"lastName\":\"Baggins\"}")).andExpect(
+                status().isCreated()).andReturn();
 
         // Finde User über Nachname
+        String location = mvcResult.getResponse().getHeader("Location");
+        mockMvc.perform(get(location)).andExpect(status().isOk()).andExpect(
+                jsonPath("$.firstName").value("Frodo")).andExpect(
+                jsonPath("$.lastName").value("Baggins"));
     }
 
     @Test
     public void shouldUpdateEntity() throws Exception {
 
         // Lege User an
-
+        MvcResult mvcResult = mockMvc.perform(post("/users").content(
+                "{\"firstName\": \"Frodo\", \"lastName\":\"Baggins\"}")).andExpect(
+                status().isCreated()).andReturn();
 
         // Ändere Namen
-
+        String location = mvcResult.getResponse().getHeader("Location");
+        mockMvc.perform(put(location).content(
+                "{\"firstName\": \"Bilbo\", \"lastName\":\"Baggins\"}")).andExpect(
+                status().isNoContent());
 
         // Frage User nach neuen Daten ab
+        mockMvc.perform(get(location)).andExpect(status().isOk()).andExpect(
+                jsonPath("$.firstName").value("Bilbo")).andExpect(
+                jsonPath("$.lastName").value("Baggins"));
 
     }
-
 
     @Test
     public void shouldDeleteEntity() throws Exception {
 
         // Lege User an
-
+        MvcResult mvcResult = mockMvc.perform(post("/users").content(
+                "{ \"firstName\": \"Bilbo\", \"lastName\":\"Baggins\"}")).andExpect(
+                status().isCreated()).andReturn();
 
         // Ändere Namen
-
+        String location = mvcResult.getResponse().getHeader("Location");
+        mockMvc.perform(delete(location)).andExpect(status().isNoContent());
 
         // Frage User nach neuen Daten ab
-
+        mockMvc.perform(get(location)).andExpect(status().isNotFound());
     }
 }
