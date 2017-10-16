@@ -7,7 +7,7 @@ Docker muss installiert sein. Bitte einmal per `docker info` prüfen, ob eine Au
 
 ### Docker Basic Build Prozess für Spring Boot Apps
 
-In part6 liegt ein Beispiel-[Dockerfile](https://github.com/jonashackt/spring-and-rest-basics/blob/master/part6/Dockerfile) - dieses bitte einmal in den Ordner `part4` kopieren und auf den korrekten __jar-Namen__ anpassen.
+In part6_loesung liegt ein Beispiel-[Dockerfile](https://github.com/jonashackt/spring-and-rest-basics/blob/master/part6_loesung/Dockerfile) - dieses bitte einmal in den Ordner `part4` kopieren und auf den korrekten __jar-Namen__ anpassen.
 
 
 Nun einen ersten Docker Container bauen per
