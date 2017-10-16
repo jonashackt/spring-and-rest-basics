@@ -7,6 +7,10 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
 @RunWith(SpringRunner.class)
 @DataJpaTest
 public class UserRepositoryTests {
@@ -21,10 +25,15 @@ public class UserRepositoryTests {
     public void testFindByLastName() {
 
         // Lege neuen User an
+        User user = new User("first", "last");
+
         // Speichere User
+        entityManager.persist(user);
 
         // Suche User über den Nachnamen aus der Datenbank
+        List<User> findByLastName = users.findByLastName(user.getLastName());
 
         // Vergleiche Namen des angelegten User mit dem abgespeicherten User
+        assertThat(findByLastName).extracting(User::getLastName).containsOnly(user.getLastName());
     }
 }
